@@ -1,0 +1,52 @@
+
+
+Elementy mapy: Na mapie można znaleźć różnorodne elementy takie jak:
+
+NPC (Non-Player Characters): Postacie niezależne, które oferują misje, sprzedaż przedmiotów lub inne interakcje.
+Potwory: Gracz może napotkać różnorodne potwory, z którymi można walczyć.
+Przedmioty: Na mapie można znaleźć skrzynie z przedmiotami lub losowo pojawiające się zasoby.
+Przejścia: Lokacje mają przejścia, które łączą jedną mapę z drugą.
+
+
+1. Silnik gry
+Margonem to gra 2D przeglądarkowa, która prawdopodobnie została stworzona przy użyciu technologii takich jak:
+
+HTML5 i Canvas: Renderowanie grafiki 2D w przeglądarce może być realizowane za pomocą elementu canvas, który pozwala na rysowanie obrazów, sprite'ów, i innych elementów graficznych.
+JavaScript lub WebAssembly: Wspiera mechanizmy gry, takie jak interakcje gracza, poruszanie się po mapie, kolizje, logikę walki, itd.
+W starszych wersjach mogły być wykorzystywane technologie takie jak Flash, ale nowsze wersje przeglądarek korzystają z nowoczesnych rozwiązań opartych o HTML5.
+
+2. Mapa kafelkowa (tile-based map)
+Mapa w Margonem jest prawdopodobnie oparta na systemie kafelkowym (ang. tile-based map). Oto jak mogłoby to wyglądać z technicznego punktu widzenia:
+
+Siatka: Mapa gry jest podzielona na siatkę kafelków (np. 32x32 piksele). Każdy kafelek reprezentuje pojedynczy element mapy, taki jak trawa, woda, ściana, budynek, itp.
+Warstwy (layers): Mapa często składa się z wielu warstw, np.:
+Warstwa tła (teren: trawa, woda),
+Warstwa obiektów (drzewa, budynki),
+Warstwa kolizji (miejsca, w które gracz nie może wejść).
+Pliki mapy: Mapa może być zapisana w plikach JSON, XML lub specjalnych formatach używanych przez narzędzia takie jak Tiled Map Editor. Każdy plik mapy zawiera informacje o położeniu kafelków i obiektów na mapie.
+
+Każdy kafelek na mapie to obrazek pobrany z spritesheeta – dużego obrazu zawierającego wszystkie elementy mapy. Aby wyświetlić dany kafelek, programista odczytuje odpowiedni fragment spritesheeta (np. współrzędne X i Y) i rysuje go na odpowiednim miejscu na mapie.
+
+4. Algorytm poruszania się (Pathfinding)
+Poruszanie się postaci po mapie opiera się na algorytmach takich jak *A (A-star)**. Algorytm ten pozwala na znajdowanie najkrótszej ścieżki z jednego punktu na mapie do drugiego, z uwzględnieniem przeszkód (takich jak budynki, woda, itd.).
+
+Przykładowe kroki algorytmu:
+
+Gracz kliknął na punkt docelowy na mapie.
+Algorytm A* oblicza najkrótszą drogę do celu, omijając przeszkody.
+Postać gracza porusza się wzdłuż tej ścieżki, aktualizując swoją pozycję co krok.
+5. Kolizje i interakcje z obiektami
+Każdy kafelek mapy może mieć przypisane właściwości, takie jak:
+
+Kolizyjność: Czy gracz może wejść na dany kafelek (np. budynki, drzewa są blokujące).
+Interakcje: Kafelki mogą posiadać interakcje, takie jak otwarcie skrzyni czy rozmowa z NPC. Implementuje się to za pomocą przypisanych zdarzeń, które są wywoływane po kliknięciu lub wejściu na dany kafelek.
+6. Serwer a Klient
+Serwer: Gra Margonem jest grą MMO, więc cała logika gry (pozycje graczy, NPC, potwory, walki) jest zarządzana przez serwer. Klient (przeglądarka gracza) wysyła zapytania do serwera o ruch, interakcje, walki, a serwer przetwarza te dane i odsyła odpowiedź.
+Synchronizacja: Serwer utrzymuje globalny stan gry, natomiast klient tylko renderuje mapę i obsługuje lokalne interakcje.
+7. Optymalizacja
+Mapa w Margonem musi być zoptymalizowana, aby działała płynnie nawet na słabszych urządzeniach. Techniki, które mogą być używane, to:
+
+Culling: Renderowanie tylko tej części mapy, która jest widoczna na ekranie.
+Lazy loading: Wczytywanie części mapy tylko wtedy, gdy gracz się do nich zbliża
+Podsumowanie
+Od strony programistycznej mapa w grze Margonem to struktura oparta na kafelkach, obsługiwana przez narzędzie do renderowania 2D, takie jak HTML5 Canvas, z odpowiednimi warstwami i interakcjami. Logika poruszania się, kolizji i interakcji jest zarządzana przez klienta gry, a cały stan świata gry jest utrzymywany na serwerze.

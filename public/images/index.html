@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #f4f4f4;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="section" id="characters">
+        <h2>Postacie</h2>
+        <ul id="characters-list"></ul>
+    </div>
+    <div class="section" id="npcs">
+        <h2>NPC</h2>
+        <ul id="npcs-list"></ul>
+    </div>
+    <div class="section" id="maps">
+        <h2>Mapy</h2>
+        <ul id="maps-list"></ul>
+    </div>
+    <div class="section" id="items">
+        <h2>Przedmioty</h2>
+        <ul id="items-list"></ul>
+    </div>
+    <script>
+        // Pobieranie i renderowanie danych
+        const fetchData = async (endpoint, elementId) => {
+            try {
+                const response = await fetch(endpoint);
+                const data = await response.json();
+                const listElement = document.getElementById(elementId);
+                data.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = item.name; // Dostosuj do swojej struktury danych
+                    listElement.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Błąd podczas pobierania danych:', error);
+            }
+        };
+
+        // Pobieranie danych z endpointów
+        fetchData('/api/characters', 'characters-list');
+        fetchData('/api/npcs', 'npcs-list');
+        fetchData('/api/maps', 'maps-list');
+        fetchData('/api/items', 'items-list');
+    </script>
+</body>
+</html>
