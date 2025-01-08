@@ -1,0 +1,11 @@
+# Ignorowanie katalogu node_modules
+node_modules/
+
+# Ignorowanie plików tymczasowych systemu
+*.log
+.DS_Store
+Thumbs.db
+
+# Ignorowanie plików konfiguracyjnych IDE
+.vscode/
+.idea/
